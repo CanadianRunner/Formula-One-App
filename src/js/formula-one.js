@@ -1,6 +1,6 @@
-export default class Formula1Stats {  
-  static getStats() {
-    return fetch(`https://api.sportradar.us/formula1/trial/v2/en/sport_events/sr:stage:937183/summary.json?api_key=${process.env.API_KEY}`)
+export class Formula1DriverStats {  
+  static getDriverStats() {
+    return fetch(`https://ergast.com/api/f1/current/driverStandings.json?`)
       .then(function(response) {
         if (!response.ok) {
           throw Error(response.status);
@@ -8,7 +8,36 @@ export default class Formula1Stats {
         return response.json();
       })
       .catch(function(error) {
-      
+        return error;
+      });
+  }
+}
+
+export class Formula1ConstrucorStats {  
+  static getConstrutorStats() {
+    return fetch(`https://ergast.com/api/f1/current/constructorStandings.json?`)
+      .then(function(response) {
+        if (!response.ok) {
+          throw Error(response.status);
+        }
+        return response.json();
+      })
+      .catch(function(error) {
+        return error;
+      });
+  }
+}
+
+export class Schedule {  
+  static getNextRound() {
+    return fetch(`http://ergast.com/api/f1/current/next.json?`)
+      .then(function(response) {
+        if (!response.ok) {
+          throw Error(response.status);
+        }
+        return response.json();
+      })
+      .catch(function(error) {
         return error;
       });
   }
